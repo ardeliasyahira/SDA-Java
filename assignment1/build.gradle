@@ -1,7 +1,0 @@
-application {
-    mainClassName = 'assignments.assignment1.ExtractNPM'
-}
-
-run {
-    standardInput = System.in
-}
