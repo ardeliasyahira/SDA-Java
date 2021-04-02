@@ -20,12 +20,24 @@ public class MataKuliah {
         return this.kode;
     }
 
-//    public void searchMahasiswa() {
-//
-//    }
-
     public String getNama() {
         return this.nama;
+    }
+
+    public int getSKS() {
+        return this.sks;
+    }
+
+    public int getKapasitas() {
+        return this.kapasitas;
+    }
+
+    public int getSeluruhMahasiswa() {
+        return this.seluruhMahasiswa;
+    }
+
+    public Mahasiswa[] getArrayMahasiswa() {
+        return this.daftarMahasiswa;
     }
 
     public void addMahasiswa(Mahasiswa mahasiswa) {
@@ -41,21 +53,19 @@ public class MataKuliah {
     public void dropMahasiswa(Mahasiswa mahasiswa) {
         /* TODO: implementasikan kode Anda di sini */
         /* mengurangi dari daftar mahasiswa apabila ada mahasiswa yang melakukan drop mata kuliah */
+        Mahasiswa[] kurangMahasiswa = new Mahasiswa[]; //Ini masih error:(
         for (int i=0; i < this.seluruhMahasiswa; i++) {
-            if (daftarMahasiswa[i] == mahasiswa) {
-                daftarMahasiswa[i] = null;
-                this.seluruhMahasiswa--;
-            } //Jangan lupa bikin while loop buat pindahin posisi si null
+            if (getArrayMahasiswa()[i] != null && !getArrayMahasiswa()[i].equals(mahasiswa)) {
+                kurangMahasiswa[i] = getArrayMahasiswa()[i];
+            }
         }
+        this.seluruhMahasiswa--;
+        this.daftarMahasiswa = kurangMahasiswa; //daftarMahasiswa diupdate isi Array kurangMahasiswa
     }
 
     public String toString() {
         /* TODO: implementasikan kode Anda di sini */
         /* Mengembalikan nama Mata Kuliah */
         return this.nama;
-    }
-
-    public int getSKS() {
-        return this.sks;
     }
 }

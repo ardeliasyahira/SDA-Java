@@ -14,7 +14,7 @@ public class SistemAkademik {
     
     private Scanner input = new Scanner(System.in);
 
-    private Mahasiswa getMahasiswa(long npm) { //GATAU MASIH SALAH POKOKNYA GINI 
+    private Mahasiswa getMahasiswa(long npm) {
         /* TODO: Implementasikan kode Anda di sini */
         //Input NPM buat keluar nama Mahasiswa 
         for (int i=0; i<daftarMahasiswa.length; i++) {
@@ -47,7 +47,6 @@ public class SistemAkademik {
         //Ambil data mahasiswa
         //Habis itu ambil data lainnya 
         Mahasiswa daftarMhsw = getMahasiswa(npm);
-        assert daftarMhsw != null;
         if (daftarMhsw.getSeluruhMatkul() >= 10){ //Validasi bila Mahasiswa mengambil mata kuliah lebih dari 10
             System.out.println("[DITOLAK] Maksimal mata kuliah yang diambil hanya 10");
         }
@@ -59,7 +58,9 @@ public class SistemAkademik {
             System.out.print("Nama mata kuliah " + i+1 + " : ");
             String namaMataKuliah = input.nextLine();
             /* TODO: Implementasikan kode Anda di sini */
-            daftarMhsw.addMatkul(getMataKuliah(namaMataKuliah)); //nama Mata kuliah yang akan masuk ke daftar Mahasiswa. 
+            MataKuliah simpanData = getMataKuliah(namaMataKuliah);
+            daftarMhsw.addMatkul(simpanData); //nama Mata kuliah yang akan masuk ke daftar Mahasiswa.
+            simpanData.addMahasiswa(daftarMhsw);
         }
         System.out.println("\nSilakan cek rekap untuk melihat hasil pengecekan IRS.\n");
     }
@@ -73,7 +74,7 @@ public class SistemAkademik {
        /* TODO: Implementasikan kode Anda di sini 
         Jangan lupa lakukan validasi apabila mahasiswa belum mengambil mata kuliah*/
         //drop mata kuliah yang diambil seorang mahasiswa
-
+        Mahasiswa simpanNama = getMahasiswa(npm);
         System.out.print("Banyaknya Matkul yang Di-drop: ");
         int banyakMatkul = Integer.parseInt(input.nextLine());
         System.out.println("Masukkan nama matkul yang di-drop:");
@@ -81,10 +82,7 @@ public class SistemAkademik {
             System.out.print("Nama matakuliah " + i+1 + " : ");
             String namaMataKuliah = input.nextLine();
             /* TODO: Implementasikan kode Anda di sini */
-            if (getMataKuliah() < 1) { //Validasi untuk mahasiswa yang belum ambil mata kuliah
-                System.out.println("[DITOLAK] Belum ada mata kuliah yang diambil.");
-            }
-                daftarMhsw.dropMatkul(getMataKuliah(namaMataKuliah));
+                simpanNama.dropMatkul(getMataKuliah(namaMataKuliah));
         }
         System.out.println("\nSilakan cek rekap untuk melihat hasil pengecekan IRS.\n");
     }
@@ -94,23 +92,37 @@ public class SistemAkademik {
         System.out.print("Masukkan npm mahasiswa yang akan ditunjukkan ringkasannya : ");
         long npm = Long.parseLong(input.nextLine());
 
-        Mahasiswa daftarMhsw = getMahasiswa(npm);
+        Mahasiswa daftarMhsw = getMahasiswa(npm); //Inisiasi Object Mahasiswa
         // TODO: Isi sesuai format keluaran
         System.out.println("\n--------------------------RINGKASAN--------------------------\n");
         System.out.println("Nama: " + daftarMhsw.getNama());
         System.out.println("NPM: " + npm);
         System.out.println("Jurusan: " + daftarMhsw.getJurusan());
-        System.out.println("Daftar Mata Kuliah: " + Arrays.toString(daftarMataKuliah));
+        System.out.println("Daftar Mata Kuliah: ");
 
         /* TODO: Cetak daftar mata kuliah 
         Handle kasus jika belum ada mata kuliah yang diambil*/
         if (daftarMhsw.getSeluruhMatkul() < 1) {
             System.out.println("Belum ada mata kuliah yang diambil.");
         }
+        else {
+            for (int i = 0; i < daftarMhsw.getSeluruhMatkul(); i++) {
+                System.out.println(i + 1 + "." + daftarMhsw.getArraynyaMatkul()[i]);
+            }
+        }
         System.out.println("Total SKS: " + daftarMhsw.getTotalSKS()); //belum buat method
-        System.out.println("Hasil Pengecekan IRS:" + daftarMhsw.cekIRS()); //belum buat method guys makanya error
+        System.out.println("Hasil Pengecekan IRS:"); //belum buat method guys makanya error
         /* TODO: Cetak hasil cek IRS
         Handle kasus jika IRS tidak bermasalah */
+        daftarMhsw.cekIRS();
+        if (daftarMhsw.getNgitungIRS() == 0) {
+            System.out.println("IRS tidak bermasalah.");
+        }
+        else {
+            for (int i = 0; i < daftarMhsw.getNgitungIRS(); i++) {
+                System.out.println(i + 1 + "." + daftarMhsw.getMasalahIRS()[i]);
+            }
+        }
     }
 
     private void ringkasanMataKuliah(){
@@ -120,17 +132,21 @@ public class SistemAkademik {
         // TODO: Isi sesuai format keluaran
         System.out.println("\n--------------------------RINGKASAN--------------------------\n");
         System.out.println("Nama mata kuliah: " + namaMataKuliah);
-        assert namaMatkul != null;
         System.out.println("Kode: " + namaMatkul.getKode()); //Mengambil method getKode di class MataKuliah
         System.out.println("SKS: " + namaMatkul.getSKS()); //Mengambil method totalSKS() di class MataKuliah; GATAU MASIH BINGUNG
-        System.out.println("Jumlah mahasiswa: " + ""); //hah yang mana
-        System.out.println("Kapasitas: " + ""); //yang mana lagi 
-        System.out.println("Daftar mahasiswa yang mengambil mata kuliah ini: " + Arrays.toString(daftarMahasiswa)); //gatau soalnya hrs dri satu matkul
+        System.out.println("Jumlah mahasiswa: " + namaMatkul.getSeluruhMahasiswa()); //hah yang mana
+        System.out.println("Kapasitas: " + namaMatkul.getKapasitas());
+        System.out.println("Daftar mahasiswa yang mengambil mata kuliah ini: "); //gatau soalnya hrs dri satu matkul
         //Mata kuliah dan mahasiswa yang dimasukkan tidak akan melebihi 100 orang
        /* TODO: Cetak hasil cek IRS
         Handle kasus jika tidak ada mahasiswa yang mengambil */
-        if (daftarMataKuliah == null) { //gatau bener apa kaga
+        if (namaMatkul.getSeluruhMahasiswa() == 0) {
             System.out.println("Belum ada mahasiswa yang mengambil mata kuliah ini.");
+        }
+        else {
+            for (int i = 0; i < namaMatkul.getSeluruhMahasiswa(); i++) {
+                System.out.println(i + 1 + "." + namaMatkul.getArrayMahasiswa()[i]);
+            }
         }
     }
 
@@ -183,6 +199,13 @@ public class SistemAkademik {
             int sks = Integer.parseInt(dataMatkul[2]);
             int kapasitas = Integer.parseInt(dataMatkul[3]);
             /* TODO: Buat instance mata kuliah dan masukkan ke dalam Array */
+            //IK POK 3 3
+            String kode = dataMatkul[0];
+            String nama = dataMatkul[1];
+            // Mahasiswa[] daftarMahasiswa = new Mahasiswa[100];
+            MataKuliah siMatkul = new MataKuliah(kode, nama, sks, kapasitas);
+            daftarMataKuliah[i] = siMatkul;
+
         }
 
         System.out.print("Banyaknya Mahasiswa di Fasilkom: ");
@@ -194,6 +217,11 @@ public class SistemAkademik {
             String[] dataMahasiswa = input.nextLine().split(" ", 2);
             long npm = Long.parseLong(dataMahasiswa[1]);
             /* TODO: Buat instance mata kuliah dan masukkan ke dalam Array */
+            //Ryaas 18012808200017
+            String nama = dataMahasiswa[0];
+            Mahasiswa siMahasiswa = new Mahasiswa(nama,npm);
+            daftarMahasiswa[i] = siMahasiswa;
+
         }
         daftarMenu();
         input.close();
@@ -203,9 +231,4 @@ public class SistemAkademik {
         SistemAkademik program = new SistemAkademik();
         program.run();
     }
-
-    
-
-
-    
 }
