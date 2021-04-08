@@ -1,5 +1,9 @@
 package assignments.assignment2;
 
+//Nama: Ardelia Syahira Yudiva
+//Kelas: DDP-2 B
+//NPM: 2006597216
+
 public class MataKuliah {
     private String kode;
     private String nama;
@@ -14,6 +18,8 @@ public class MataKuliah {
         this.nama = nama;
         this.sks = sks;
         this.kapasitas = kapasitas;
+        this.daftarMahasiswa = new Mahasiswa[kapasitas];
+        this.seluruhMahasiswa = 0;
     }
 
     public String getKode() {
@@ -42,25 +48,28 @@ public class MataKuliah {
 
     public void addMahasiswa(Mahasiswa mahasiswa) {
         /* TODO: implementasikan kode Anda di sini */
-        if (kapasitas < seluruhMahasiswa) {
-            System.out.println("[DITOLAK] [namaMataKuliah] telah penuh kapasitasnya.");
-        }
-        else {
-            daftarMahasiswa[this.seluruhMahasiswa++] = mahasiswa; //Menambahkan mahasiswa yang add mata kuliah
-        }
+        /** Menambahkan mahasiswa yang add mata kuliah */
+        daftarMahasiswa[this.seluruhMahasiswa++] = mahasiswa; 
     }
 
     public void dropMahasiswa(Mahasiswa mahasiswa) {
         /* TODO: implementasikan kode Anda di sini */
         /* mengurangi dari daftar mahasiswa apabila ada mahasiswa yang melakukan drop mata kuliah */
-        Mahasiswa[] kurangMahasiswa = new Mahasiswa[]; //Ini masih error:(
-        for (int i=0; i < this.seluruhMahasiswa; i++) {
-            if (getArrayMahasiswa()[i] != null && !getArrayMahasiswa()[i].equals(mahasiswa)) {
-                kurangMahasiswa[i] = getArrayMahasiswa()[i];
+        /** Array untuk referensi baru  */
+        Mahasiswa[] kurangMahasiswa = new Mahasiswa[kapasitas];
+        /** Tampung variabel  */ 
+        int noDrop = 0; 
+        for (int i=0; i < getSeluruhMahasiswa(); i++) {
+            /** Mengecek seluruh mahasiswa dengan mahasiswa yang ingin drop  */
+            if (!getArrayMahasiswa()[i].equals(mahasiswa)) {
+                kurangMahasiswa[noDrop] = this.daftarMahasiswa[i];
+                noDrop++;
             }
         }
+        /** Mengurangi jumlah mahasiswa  */
         this.seluruhMahasiswa--;
-        this.daftarMahasiswa = kurangMahasiswa; //daftarMahasiswa diupdate isi Array kurangMahasiswa
+        /** daftarMahasiswa diupdate isi Array kurangMahasiswa */
+        this.daftarMahasiswa = kurangMahasiswa; 
     }
 
     public String toString() {
