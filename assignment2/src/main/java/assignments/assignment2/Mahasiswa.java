@@ -77,7 +77,7 @@ public class Mahasiswa {
     public void addMatkul(MataKuliah mataKul){
         /* TODO: implementasikan kode Anda di sini */
         /** Validasi untuk add Matkul  */
-        /** If FALSE */
+
         if (searchMatkul(mataKul.getNama())) { 
             System.out.printf("[DITOLAK] %s telah diambil sebelumnya.", mataKul.getNama());
         }
@@ -123,7 +123,7 @@ public class Mahasiswa {
                 /** Karena matakuliah untuk seluruhMatkul telah di drop */
                 this.seluruhMatkul--;
                 this.mataKuliah = newDaftarMatkul; 
-                /** SKS berkurang karena susah di drop matkul */
+                /** SKS berkurang karena sudah di drop matkul */
                 this.totalSKS -= mataKul.getSKS(); 
                 /** Memanggil method dropMahasiswa */
                 mataKul.dropMahasiswa(this); 

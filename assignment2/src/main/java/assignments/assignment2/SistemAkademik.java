@@ -39,7 +39,7 @@ public class SistemAkademik {
                 continue;
             }
             /** Mengambil getNama() di class MataKuliah */
-            else if (mataKuliah.getNama().equals(namaMataKuliah)) { 
+            else if (mataKuliah.getNama().equals(namaMataKuliah)) {
                 return mataKuliah;
             }
         }
@@ -221,6 +221,7 @@ public class SistemAkademik {
             /** Indexing dari input */
             String kode = dataMatkul[0];
             String nama = dataMatkul[1];
+            //Inisiasi class mata kuliah
             MataKuliah siMatkul = new MataKuliah(kode, nama, sks, kapasitas);
             daftarMataKuliah[i] = siMatkul;
 
