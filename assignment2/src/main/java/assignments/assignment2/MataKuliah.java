@@ -60,7 +60,17 @@ public class MataKuliah {
         /** Tampung variabel  */ 
         int noDrop = 0; 
         for (int i=0; i < getSeluruhMahasiswa(); i++) {
-            i
+            /** Mengecek seluruh mahasiswa dengan mahasiswa yang ingin drop  */
+            if (!getArrayMahasiswa()[i].equals(mahasiswa)) {
+                kurangMahasiswa[noDrop] = this.daftarMahasiswa[i];
+                noDrop++;
+            }
+        }
+        /** Mengurangi jumlah mahasiswa  */
+        this.seluruhMahasiswa--;
+        /** daftarMahasiswa diupdate isi Array kurangMahasiswa */
+        this.daftarMahasiswa = kurangMahasiswa;
+
     }
 
     public String toString() {
