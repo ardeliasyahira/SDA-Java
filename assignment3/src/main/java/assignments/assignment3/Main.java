@@ -198,7 +198,7 @@ public class Main {
         for (int i = 0; i < totalElemenFasilkom; i++) {
             //objek pada ElemenFasilkom telah menyapa lebih dari atau sama dengan setengah dari total elemenFasilkom
             // (tidak termasuk diri sendiri),maka tingkat friendship akan bertambah sebesar 10.
-            if (daftarElemenFasilkom[i].getCounter() >= (totalElemenFasilkom - 1) / 2) {
+            if (daftarElemenFasilkom[i].getCounter() >= (totalElemenFasilkom - 1) / 2.0) {
                 daftarElemenFasilkom[i].setFriendship(10);
             }
             else {
