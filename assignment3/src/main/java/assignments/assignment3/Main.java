@@ -8,7 +8,7 @@ public class Main {
 
     private static MataKuliah[] daftarMataKuliah = new MataKuliah[100];
 
-    private static int totalMataKuliah = 0;
+    private static int totalMataKuliah = 0; //Fix Variable (static)
 
     private static int totalElemenFasilkom = 0;
 
@@ -67,7 +67,7 @@ public class Main {
     }
 
     public static void addMakanan(String objek, String namaMakanan, long harga) {
-        //Validasi agar objel berasal dari getElemenFasilkom()
+        //Validasi agar objek berasal dari getElemenFasilkom()
         if (getElemenFasilkom(objek).getTipe().equals("Elemen Kantin")) {
             //Menambahkan makanan si namaMakanan
             ((ElemenKantin) getElemenFasilkom(objek)).setMakanan(namaMakanan, harga);
@@ -94,7 +94,7 @@ public class Main {
     }
 
     public static void createMatkul(String nama, int kapasitas) {
-        //Memanggil clas MataKuliah dengan parameter mataKuliah
+        //Memanggil class MataKuliah dengan parameter mataKuliah
         MataKuliah mataKuliah = new MataKuliah(nama, kapasitas);
         //Inisiasi array baru
         daftarMataKuliah[totalMataKuliah++] = mataKuliah;
@@ -220,9 +220,8 @@ public class Main {
     }
 
     public static void friendshipRanking() {
-        /* TODO: implementasikan kode Anda di sini */
         for (int i = 0; i < daftarElemenFasilkom.length; i++) {
-            for (int j = i + 1; j < daftarElemenFasilkom.length; j++) {
+            for (int j = i + 1; j < daftarElemenFasilkom.length; j++) { //Algoritma Bubble Sort
                 if (daftarElemenFasilkom[j] == null) {
                     break;
                 }

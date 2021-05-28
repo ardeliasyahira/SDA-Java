@@ -12,13 +12,14 @@ class ElemenKantin extends ElemenFasilkom {
 
     public boolean searchMakanan(String nama) {
         for (int i = 0; i < isiMakanan; i++) {
-            //Mencari namaMakanan untuk method setMakanan
+            //Mencari namaMakanan
             if (nama.equals(daftarMakanan[i].toString())) {
                 return true;
             }
         }
         return false;
     }
+
     public void setMakanan(String nama, long harga) {
         //Bila nama sesuai dengan daftarMakanan
         if (searchMakanan(nama)) {
@@ -30,7 +31,6 @@ class ElemenKantin extends ElemenFasilkom {
             daftarMakanan[isiMakanan++] = objekMakanan; //Inisiasi Array baru untuk daftarMakanan
             System.out.printf("%s telah mendaftarkan makanan %s dengan harga %d\n", this, nama, harga);
         }
-
     }
 
     public Makanan getMakanan(String nama) {

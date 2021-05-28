@@ -41,7 +41,7 @@ public class Mahasiswa extends ElemenFasilkom {
         return Matkul;
     }
 
-    public void addMatkul(MataKuliah mataKuliah) {
+    public void addMatkul(MataKuliah mataKuliah) { //No return value
         /* Validasi untuk add Matkul  */
         if (searchMatkul(mataKuliah.getNama())) {
             System.out.printf("[DITOLAK] %s telah diambil sebelumnya\n", mataKuliah.getNama());
