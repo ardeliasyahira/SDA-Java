@@ -49,7 +49,7 @@ public class Mahasiswa {
         return this.masalahIRS;
     }
 
-    private int cekMatkulAda(MataKuliah mataKuliah){
+    public int cekMatkulAda(MataKuliah mataKuliah){
         for(int i=0; i<banyakMatkul; i++){
             if(this.mataKuliah[i].toString().equals(mataKuliah.toString())){
                 return i;
@@ -91,9 +91,10 @@ public class Mahasiswa {
         this.mataKuliah[indexMatkul] = null;
         mataKuliah.dropMahasiswa(this);
 
-        for(int i=indexMatkul; i<banyakMatkul; i++){
+        for(int i=indexMatkul; i<banyakMatkul-1; i++){
             this.mataKuliah[i] = this.mataKuliah[i+1];
         }
+        this.mataKuliah[9] = null;
 
         this.banyakMatkul--;
         return("[BERHASIL] Silakan cek rekap untuk melihat hasil pengecekan IRS.");
@@ -139,5 +140,11 @@ public class Mahasiswa {
         }
 
     }
+
+    public String toString() {
+        return String.valueOf(npm);
+    }
+
+
 
 }

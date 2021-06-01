@@ -10,15 +10,19 @@ import assignments.assignment4.backend.*;
 
 public class HomeGUI {
 
-    private JPanel panelCenter;
-    
     public HomeGUI(JFrame frame, ArrayList<Mahasiswa> daftarMahasiswa, ArrayList<MataKuliah> daftarMataKuliah){
 
+        frame.getContentPane().removeAll();
+        frame.repaint();
         JLabel titleLabel = new JLabel();
+        JPanel panelCenter = new JPanel();
+        panelCenter.setLayout(new GridLayout(7,0,10,10));
         titleLabel.setText("Selamat datang di Sistem Akademik");
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setFont(SistemAkademikGUI.fontTitle);
-        
+        panelCenter.add(titleLabel);
+        panelCenter.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
+
         //UNTUK TAMBAH MAHASISWA
         JButton tambahMahasiswa = new JButton();
         tambahMahasiswa.setText("Tambah Mahasiswa");
@@ -26,16 +30,12 @@ public class HomeGUI {
         tambahMahasiswa.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TambahMahasiswaGUI kelasTambah = new TambahMahasiswaGUI(frame, daftarMahasiswa, daftarMataKuliah);
-                //gatau apa lagi hehe
+               new TambahMahasiswaGUI(frame, daftarMahasiswa, daftarMataKuliah);
             }
         });
-        panelCenter = new JPanel();
-        this.setLayout(new BorderLayout()); //keknya salah
-        panelCenter.setLayout(new BorderLayout());
-        panelCenter.setBackground(Color.GREEN);
+//        this.setLayout(new BorderLayout()); //keknya salah
         panelCenter.add(tambahMahasiswa);
-//        this.add(panelCenter, "Center");
+
 
         //UNTUK TAMBAH MATA KULIAH
         JButton tambahMatkul = new JButton();
@@ -44,15 +44,11 @@ public class HomeGUI {
         tambahMatkul.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TambahMataKuliahGUI kelasTambah = new TambahMataKuliahGUI(frame, daftarMahasiswa, daftarMataKuliah)
-                //gatau apa lagi hehe
+                new TambahMataKuliahGUI(frame, daftarMahasiswa, daftarMataKuliah);
             }
         });
-        panelCenter = new JPanel();
-        this.setLayout(new BorderLayout()); //salah
-        panelCenter.setLayout(new BorderLayout());
-        panelCenter.setBackground(Color.GREEN);
         panelCenter.add(tambahMatkul);
+
 
         //UNTUK TAMBAH IRS
         JButton tambahIRS = new JButton();
@@ -61,15 +57,11 @@ public class HomeGUI {
         tambahIRS.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TambahIRSGUI kelasTambah = new TambahIRSGUI(frame, daftarMahasiswa, daftarMataKuliah);
-                //gatau apa lagi hehe
+                new TambahIRSGUI(frame, daftarMahasiswa, daftarMataKuliah);
             }
         });
-        panelCenter = new JPanel();
-        this.setLayout(new BorderLayout()); //salah
-        panelCenter.setLayout(new BorderLayout());
-        panelCenter.setBackground(Color.GREEN);
         panelCenter.add(tambahIRS);
+
 
         //UNTUK HAPUS IRS
         JButton hapusIRS = new JButton();
@@ -78,15 +70,11 @@ public class HomeGUI {
         hapusIRS.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                HapusIRSGUI kelasTambah = new HapusIRSGUI(frame, daftarMahasiswa, daftarMataKuliah);
-                //gatau apa lagi hehe
+                new HapusIRSGUI(frame, daftarMahasiswa, daftarMataKuliah);
             }
         });
-        panelCenter = new JPanel();
-        this.setLayout(new BorderLayout()); //salah
-        panelCenter.setLayout(new BorderLayout());
-        panelCenter.setBackground(Color.GREEN);
         panelCenter.add(hapusIRS);
+
 
         //UNTUK LIHAT RINGKASAN MAHASISWA
         JButton lihatMhsw = new JButton();
@@ -95,15 +83,11 @@ public class HomeGUI {
         lihatMhsw.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RingkasanMahasiswaGUI kelasTambah = new RingkasanMahasiswaGUI(frame, daftarMahasiswa, daftarMataKuliah);
-                //gatau apa lagi hehe
+                new RingkasanMahasiswaGUI(frame, daftarMahasiswa, daftarMataKuliah);
             }
         });
-        panelCenter = new JPanel();
-        this.setLayout(new BorderLayout()); //salah
-        panelCenter.setLayout(new BorderLayout());
-        panelCenter.setBackground(Color.GREEN);
         panelCenter.add(lihatMhsw);
+
 
         //UNTUK LIHAT RINGKASAN MATA KULIAH
         JButton lihatMatkul = new JButton();
@@ -112,17 +96,11 @@ public class HomeGUI {
         lihatMatkul.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                TambahMahasiswaGUI kelasTambah = new TambahMahasiswaGUI(frame, daftarMahasiswa, daftarMataKuliah);
-                //gatau apa lagi hehe
+                new TambahMahasiswaGUI(frame, daftarMahasiswa, daftarMataKuliah);
             }
         });
-        panelCenter = new JPanel();
-        this.setLayout(new BorderLayout()); //salah
-        panelCenter.setLayout(new BorderLayout());
-        panelCenter.setBackground(Color.GREEN);
         panelCenter.add(lihatMatkul);
-    }
-
-    private void setLayout(BorderLayout borderLayout) {
+        frame.add(panelCenter);
+        frame.setVisible(true);
     }
 }
