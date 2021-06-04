@@ -76,12 +76,11 @@ public class HapusIRSGUI {
         }
         JComboBox menuMatkul = new JComboBox(matkulStr);
         menuMatkul.setFont(SistemAkademikGUI.fontGeneral);
-        panel.add(menuMatkul);
 
         JScrollPane panell = new JScrollPane(menuMatkul);
         menuMatkul.setMaximumRowCount(5);
         frame.add(panell);
-
+        panel.add(menuMatkul);
 
         JButton hapus = new JButton();
         hapus.setPreferredSize(new Dimension(90, 30));

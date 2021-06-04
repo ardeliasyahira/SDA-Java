@@ -82,12 +82,12 @@ public class TambahIRSGUI {
 
         JComboBox menuMatkul = new JComboBox(matkulStr);
         menuMatkul.setFont(SistemAkademikGUI.fontGeneral);
-        panel.add(menuMatkul);
 
         JScrollPane panell = new JScrollPane(menuMatkul);
         menuMatkul.setMaximumRowCount(5);
+        panel.add(panell);
         frame.add(panell);
-
+        panel.add(menuMatkul);
 
         JButton tambahkan = new JButton();
         tambahkan.setPreferredSize(new Dimension(90, 30));
