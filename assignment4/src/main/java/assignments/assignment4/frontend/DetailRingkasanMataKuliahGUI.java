@@ -68,8 +68,6 @@ public class DetailRingkasanMataKuliahGUI {
         daftar.setFont(SistemAkademikGUI.fontGeneral);
         daftar.setForeground(new Color(86, 55, 63));
         panel.add(daftar);
-
-
         /* Handle kasus jika tidak ada mahasiswa yang mengambil */
         if (mataKuliah.getJumlahMahasiswa() == 0) {
             JLabel belum = new JLabel();

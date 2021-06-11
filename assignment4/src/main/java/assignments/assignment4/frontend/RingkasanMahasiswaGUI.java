@@ -25,7 +25,6 @@ public class RingkasanMahasiswaGUI {
         titleLabel.setFont(SistemAkademikGUI.fontTitle);
         titleLabel.setForeground(new Color(86, 55, 63));
         panel.add(titleLabel);
-
         panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 30, 30));
 
         JLabel pilihNPM = new JLabel();

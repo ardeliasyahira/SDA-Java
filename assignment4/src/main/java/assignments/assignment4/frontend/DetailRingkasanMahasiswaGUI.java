@@ -56,9 +56,7 @@ public class DetailRingkasanMahasiswaGUI {
         daftar.setFont(SistemAkademikGUI.fontGeneral);
         daftar.setForeground(new Color(86, 55, 63));
         panel.add(daftar);
-
-        /* TODO: Cetak daftar mata kuliah
-        Handle kasus jika belum ada mata kuliah yang diambil*/
+        /* Handle kasus jika belum ada mata kuliah yang diambil*/
         if (mahasiswa.getBanyakMatkul() == 0){
             JLabel belum = new JLabel();
             belum.setText("Belum ada mata kuliah yang diambil");
@@ -91,7 +89,6 @@ public class DetailRingkasanMahasiswaGUI {
         hasil.setFont(SistemAkademikGUI.fontGeneral);
         hasil.setForeground(new Color(86, 55, 63));
         panel.add(hasil);
-
         /*
         Handle kasus jika IRS tidak bermasalah */
         /** Menjalani method cekIRS */

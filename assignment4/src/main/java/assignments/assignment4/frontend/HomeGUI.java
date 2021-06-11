@@ -49,7 +49,6 @@ public class HomeGUI {
                 tambahMahasiswa.setBackground(new Color(182, 129, 148));
                 tambahMahasiswa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
             }
-
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tambahMahasiswa.setBackground(new Color(226,161,149,255));
             }
